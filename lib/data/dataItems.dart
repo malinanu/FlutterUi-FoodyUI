@@ -1,5 +1,4 @@
 // Image List
-
 List<String> ui2path = [
   'https://omnivorescookbook.com/wp-content/uploads/2019/08/1908_Salmon-Poke-Bowl_550.jpg',
   'https://s3-us-west-2.amazonaws.com/beachbody-blog/uploads/2017/04/Vegan-Buddha-Bowl-with-Spring-Vegetables.jpg',
