@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailsFoody extends StatefulWidget {
@@ -123,7 +124,7 @@ class _DetailsFoodyState extends State<DetailsFoody> {
                                               constraints.maxHeight * 0.05),
                                     ),
                                     Text(
-                                      ' ${widget.name.toString().split(" ")[1]}',
+                                      ' Bowl',
                                       style: GoogleFonts.montserrat(
                                           color: Colors.black,
                                           fontSize:

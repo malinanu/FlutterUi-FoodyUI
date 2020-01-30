@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 import 'package:google_fonts/google_fonts.dart';
+
 import 'data/dataItems.dart';
 import 'widgets/buildListItems.dart';
 import 'foodDetails.dart';
@@ -12,7 +12,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
+        SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return MaterialApp(
       title: 'Foody UI',
@@ -88,9 +88,9 @@ class MyHomePage extends StatelessWidget {
                         child: ListView.builder(
                           itemBuilder: (context, index) => InkWell(
                             child: buildListItem(
-                              foodImage[index % foodImage.length],
-                              foodNames[index % foodImage.length],
-                              foodPrice[index % foodImage.length],
+                              ui2path[index % ui2path.length],
+                              ui2names[index % ui2path.length],
+                              ui2price[index % ui2path.length],
                               index,
                               MediaQuery.of(context).size.height * 0.1,
                             ),
@@ -98,10 +98,10 @@ class MyHomePage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailsFoody(
-                                  foodImage[index % foodImage.length],
+                                  ui2path[index % ui2path.length],
                                   '$index',
-                                  foodNames[index % foodImage.length],
-                                  foodPrice[index % foodImage.length],
+                                  ui2names[index % ui2path.length],
+                                  ui2price[index % ui2path.length],
                                 ),
                               ),
                             ),

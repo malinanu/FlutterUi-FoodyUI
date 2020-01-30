@@ -1,5 +1,5 @@
 // Image List
-List<String> foodImage = [
+List<String> ui2path = [
   'https://omnivorescookbook.com/wp-content/uploads/2019/08/1908_Salmon-Poke-Bowl_550.jpg',
   'https://s3-us-west-2.amazonaws.com/beachbody-blog/uploads/2017/04/Vegan-Buddha-Bowl-with-Spring-Vegetables.jpg',
   'https://mindfulavocado.com/wp-content/uploads/2016/07/Vegan-Bibimbap_007.jpg',
@@ -9,7 +9,7 @@ List<String> foodImage = [
 ];
 
 // Images random names
-List<String> foodNames =['Slamon Bowl','Spring Bowl', 'Avocado Bowl', 'Berry Bowl','Haka Bowl','Mac Bowl'];
+List<String> ui2names =['Slamon Bowl','Spring Bowl', 'Avocado Bowl', 'Berry Bowl','Haka Bowl','Mac Bowl'];
 
 // Random Price
-List<double> foodPrice = [233.5, 343.5, 312.3, 232.1, 2321.2, 1232.3];
+List<double> ui2price = [233.5, 343.5, 312.3, 232.1, 2321.2, 1232.3];
