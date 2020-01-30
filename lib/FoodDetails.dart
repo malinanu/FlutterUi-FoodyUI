@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailsFoody extends StatefulWidget {
@@ -38,182 +39,243 @@ class _DetailsFoodyState extends State<DetailsFoody> {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return Stack(
+          return Column(
             children: <Widget>[
-              Positioned(
-                top: constraints.maxHeight * 0.12,
+              Expanded(
+                child: SizedBox(
+                  height: constraints.maxHeight * 0.18,
+                ),
+              ),
+              Expanded(
+                flex: 5,
                 child: Container(
-                  height: constraints.maxHeight,
-                  width: constraints.maxWidth,
+                  height: constraints.maxHeight * 0.82,
+                  width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(90.0),
-                      topRight: Radius.circular(90.0),
-                    ),
                     color: Colors.white,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 0,
-                left: constraints.maxWidth / 2 - 100,
-                child: Hero(
-                  tag: widget.imgPath + widget.tag,
-                  child: Container(
-                    height: constraints.maxHeight * 0.3,
-                    width: constraints.maxHeight * 0.3,
-                    child: Center(
-                      child: CachedNetworkImage(
-                        imageUrl: widget.imgPath,
-                        imageBuilder: (context, image) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              image: DecorationImage(
-                                  image: image, fit: BoxFit.cover),
-                            ),
-                          );
-                        },
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(85.0),
+                      topRight: Radius.circular(85.0),
                     ),
                   ),
-                ),
-              ),
-              Positioned(
-                top: constraints.maxHeight * 0.3,
-                width: constraints.maxWidth,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 21.0),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            widget.name.toString().split(" ")[0],
-                            style: GoogleFonts.montserrat(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                          ),
-                          Text(
-                            ' Bowl',
-                            style: GoogleFonts.montserrat(
-                                color: Colors.black, fontSize: 30),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 21.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            '\$${widget.price}',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 25.0,
-                              color: Colors.black38,
-                            ),
-                          ),
-                          Container(
-                            height: constraints.maxHeight * 0.08,
-                            width: constraints.maxWidth * 0.4,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: Color(0xFF7A9BEE),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text(
-                                  '-',
-                                  style: GoogleFonts.montserrat(
-                                      color: Colors.white, fontSize: constraints.maxHeight * 0.04),
-                                ),
-                                Text(
-                                  '2',
-                                  style: GoogleFonts.montserrat(
-                                      color: Colors.white, fontSize: constraints.maxHeight * 0.04),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.symmetric(vertical: 10.0),
-                                  width: constraints.maxWidth * 0.08,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    color: Colors.white,
-                                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        height: constraints.maxHeight * 0.3 / 2,
+                        child: Stack(
+                          overflow: Overflow.visible,
+                          children: <Widget>[
+                            Positioned(
+                              top: -constraints.maxHeight * 0.3 / 2,
+                              left: constraints.maxWidth / 2 -
+                                  constraints.maxHeight * 0.3 / 2,
+                              child: Hero(
+                                tag: widget.imgPath + widget.tag,
+                                child: Container(
+                                  height: constraints.maxHeight * 0.3,
+                                  width: constraints.maxHeight * 0.3,
                                   child: Center(
-                                    child: Text(
-                                      '+',
-                                      style: GoogleFonts.montserrat(
-                                          color: Color(0xFF7A9BEE),
-                                          fontSize: constraints.maxHeight * 0.04),
+                                    child: CachedNetworkImage(
+                                      imageUrl: widget.imgPath,
+                                      imageBuilder: (context, image) {
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                constraints.maxHeight *
+                                                    0.3 /
+                                                    2),
+                                            image: DecorationImage(
+                                                image: image,
+                                                fit: BoxFit.cover),
+                                          ),
+                                        );
+                                      },
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: constraints.maxHeight * 0.03,
-                    ),
-                    Container(
-                      height: constraints.maxHeight * 0.2,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: <Widget>[
-                          _buildDetails('WEIGHT', '300', 'G', constraints.maxHeight * 0.04, constraints.maxWidth * 0.28),
-                          SizedBox(width: 10.0),
-                          _buildDetails('CALORIES', '267', 'CAL',constraints.maxHeight * 0.04, constraints.maxWidth * 0.28),
-                          SizedBox(width: 10.0),
-                          _buildDetails('VITAMINS', 'A, B6', 'VIT',constraints.maxHeight * 0.04, constraints.maxWidth * 0.28),
-                          SizedBox(width: 10.0),
-                          _buildDetails('AVAIL', 'NO', 'AV',constraints.maxHeight * 0.04, constraints.maxWidth * 0.28),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: constraints.maxHeight * 0.04),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Expanded(
                         child: Container(
-                          height: constraints.maxHeight * 0.12,
-                          alignment: Alignment.center,
-                          width: double.infinity,
-                          child: FlatButton(
-                            color: Color(0xFF1C1428),
-                            splashColor: Colors.indigoAccent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(45.0),
-                                bottomRight: Radius.circular(45.0),
-                                topLeft: Radius.circular(22.0),
-                                topRight: Radius.circular(22.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 30.0,
+                                    vertical: constraints.maxHeight * 0.03),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      widget.name.toString().split(" ")[0],
+                                      style: GoogleFonts.montserrat(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              constraints.maxHeight * 0.05),
+                                    ),
+                                    Text(
+                                      ' Bowl',
+                                      style: GoogleFonts.montserrat(
+                                          color: Colors.black,
+                                          fontSize:
+                                              constraints.maxHeight * 0.05),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            onPressed: () {},
-                            child: Center(
-                              child: Text(
-                                '\$${widget.price}',
-                                style: GoogleFonts.montserrat(
-                                    color: Colors.white, fontSize: constraints.maxHeight * 0.04),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 30.0,
+                                    vertical: constraints.maxHeight * 0.03),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      '\$${widget.price}',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: constraints.maxHeight * 0.036,
+                                        color: Colors.black38,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: constraints.maxHeight * 0.08,
+                                      width: constraints.maxWidth * 0.4,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Color(0xFF7A9BEE),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Text(
+                                            '-',
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    constraints.maxHeight *
+                                                        0.04),
+                                          ),
+                                          Text(
+                                            '2',
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    constraints.maxHeight *
+                                                        0.04),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 10.0),
+                                            width: constraints.maxWidth * 0.08,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0),
+                                              color: Colors.white,
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                '+',
+                                                style: GoogleFonts.montserrat(
+                                                    color: Color(0xFF7A9BEE),
+                                                    fontSize:
+                                                        constraints.maxHeight *
+                                                            0.04),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
+                              Container(
+                                height: constraints.maxHeight * 0.2,
+                                margin: EdgeInsets.symmetric(
+                                  vertical: constraints.maxHeight * 0.03,
+                                ),
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: <Widget>[
+                                    _buildItemDetails(
+                                        'WEIGHT',
+                                        '300',
+                                        'G',
+                                        constraints.maxHeight * 0.04,
+                                        constraints.maxWidth * 0.28),
+                                    SizedBox(width: 10.0),
+                                    _buildItemDetails(
+                                        'CALORIES',
+                                        '267',
+                                        'CAL',
+                                        constraints.maxHeight * 0.04,
+                                        constraints.maxWidth * 0.28),
+                                    SizedBox(width: 10.0),
+                                    _buildItemDetails(
+                                        'VITAMINS',
+                                        'A, B6',
+                                        'VIT',
+                                        constraints.maxHeight * 0.04,
+                                        constraints.maxWidth * 0.28),
+                                    SizedBox(width: 10.0),
+                                    _buildItemDetails(
+                                        'AVAIL',
+                                        'NO',
+                                        'AV',
+                                        constraints.maxHeight * 0.04,
+                                        constraints.maxWidth * 0.28),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: constraints.maxHeight * 0.12,
+                                  alignment: Alignment.center,
+                                  width: double.infinity,
+                                  child: FlatButton(
+                                    color: Color(0xFF1C1428),
+                                    splashColor: Colors.indigoAccent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(45.0),
+                                        bottomRight: Radius.circular(45.0),
+                                        topLeft: Radius.circular(22.0),
+                                        topRight: Radius.circular(22.0),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Center(
+                                      child: Text(
+                                        '\$${widget.price}',
+                                        style: GoogleFonts.montserrat(
+                                            color: Colors.white,
+                                            fontSize:
+                                                constraints.maxHeight * 0.04),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -223,7 +285,8 @@ class _DetailsFoodyState extends State<DetailsFoody> {
     );
   }
 
-  Widget _buildDetails(String title, String info, String unit, double height, double width) {
+  Widget _buildItemDetails(
+      String title, String info, String unit, double height, double width) {
     return InkWell(
       onTap: () {
         setState(() {
