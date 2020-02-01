@@ -86,24 +86,24 @@ class MyHomePage extends StatelessWidget {
                       flex: 6,
                       child: Container(
                         child: ListView.builder(
-                          itemBuilder: (context, index) => GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailsFoody(
-                                   imagePath[index % imagePath.length],
-                                  '$index',
-                                  names[index % imagePath.length],
-                                  prices[index % imagePath.length],
-                                ),
-                              ),
-                            ),
+                          itemBuilder: (context, index) => InkWell(
                             child: buildListItem(
                               imagePath[index % imagePath.length],
                               names[index % imagePath.length],
                               prices[index % imagePath.length],
                               index,
                               MediaQuery.of(context).size.height * 0.1,
+                            ),
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailsFoody(
+                                  imagePath[index % imagePath.length],
+                                  '$index',
+                                  names[index % imagePath.length],
+                                  prices[index % imagePath.length],
+                                ),
+                              ),
                             ),
                           ),
                           itemCount: 50,

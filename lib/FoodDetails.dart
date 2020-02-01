@@ -223,7 +223,12 @@ class _DetailsFoodyState extends State<DetailsFoody> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.only(
+                                  top: 11.0,
+                                  bottom: 5.0,
+                                  left: 8.0,
+                                  right: 8.0,
+                                ),
                                 child: Container(
                                   height: constraints.maxHeight * 0.12,
                                   alignment: Alignment.center,
