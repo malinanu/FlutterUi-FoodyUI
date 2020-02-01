@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget buildListItem(
@@ -13,27 +12,15 @@ Widget buildListItem(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(
-              height: height,
-              width: height,
-              child: Hero(
-                tag: imgPath + '$index',
-                child: CachedNetworkImage(
-                  imageUrl: imgPath,
-                  imageBuilder: (context, image) {
-                    return Container(
-                      height: height,
-                      width: height,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        image: DecorationImage(image: image, fit: BoxFit.cover),
-                      ),
-                    );
-                  },
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+            Hero(
+              tag: imgPath + '$index',
+              child: Container(
+                height: height,
+                width: height,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage(imgPath), fit: BoxFit.cover),
                 ),
               ),
             ),

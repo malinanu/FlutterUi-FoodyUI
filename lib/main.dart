@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
+import 'FoodDetails.dart';
 import 'data/dataItems.dart';
 import 'widgets/buildListItems.dart';
-import 'foodDetails.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-        SystemChrome.setPreferredOrientations(
+    SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return MaterialApp(
       title: 'Foody UI',
@@ -86,24 +86,24 @@ class MyHomePage extends StatelessWidget {
                       flex: 6,
                       child: Container(
                         child: ListView.builder(
-                          itemBuilder: (context, index) => InkWell(
-                            child: buildListItem(
-                              ui2path[index % ui2path.length],
-                              ui2names[index % ui2path.length],
-                              ui2price[index % ui2path.length],
-                              index,
-                              MediaQuery.of(context).size.height * 0.1,
-                            ),
+                          itemBuilder: (context, index) => GestureDetector(
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailsFoody(
-                                  ui2path[index % ui2path.length],
+                                   imagePath[index % imagePath.length],
                                   '$index',
-                                  ui2names[index % ui2path.length],
-                                  ui2price[index % ui2path.length],
+                                  names[index % imagePath.length],
+                                  prices[index % imagePath.length],
                                 ),
                               ),
+                            ),
+                            child: buildListItem(
+                              imagePath[index % imagePath.length],
+                              names[index % imagePath.length],
+                              prices[index % imagePath.length],
+                              index,
+                              MediaQuery.of(context).size.height * 0.1,
                             ),
                           ),
                           itemCount: 50,

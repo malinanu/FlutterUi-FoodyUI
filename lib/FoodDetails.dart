@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailsFoody extends StatefulWidget {
@@ -74,27 +72,11 @@ class _DetailsFoodyState extends State<DetailsFoody> {
                                 child: Container(
                                   height: constraints.maxHeight * 0.3,
                                   width: constraints.maxHeight * 0.3,
-                                  child: Center(
-                                    child: CachedNetworkImage(
-                                      imageUrl: widget.imgPath,
-                                      imageBuilder: (context, image) {
-                                        return Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                constraints.maxHeight *
-                                                    0.3 /
-                                                    2),
-                                            image: DecorationImage(
-                                                image: image,
-                                                fit: BoxFit.cover),
-                                          ),
-                                        );
-                                      },
-                                      placeholder: (context, url) =>
-                                          CircularProgressIndicator(),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
-                                    ),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: AssetImage(widget.imgPath),
+                                        fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
